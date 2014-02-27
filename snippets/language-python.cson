@@ -1,7 +1,7 @@
 '.source.python':
   '#!/usr/bin/env python':
     'prefix': 'py'
-    'body': '#!/usr/bin/env python\n'
+    'body': '#!/usr/bin/env python\n# coding=utf-8\n'
   'Assert Equal':
     'prefix': 'ase'
     'body': 'self.assertEqual(${1:expected}, ${2:actual}${3:, \'${4:message}\'})$0'
