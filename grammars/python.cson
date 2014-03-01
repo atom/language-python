@@ -191,6 +191,17 @@
     ]
   }
   {
+    'captures':
+      '1':
+        'name': 'punctuation.whitespace.function-call.leading.python'
+      '2':
+        'name': 'support.function.any-method.python'
+      '3':
+        'name': 'punctuation.definition.parameters.python'
+    'match': '(?x) (?: (?= \\s )  (?:(?<=else|new|return) | (?<!\\w)) (\\s+))?\n\t(\\b(?!(while|for|do|if|else|switch|catch|enumerate|return|r?iterate|\n\t\t\t__import__|all|abs|any|apply|callable|chr|cmp|coerce|compile|delattr|dir|divmod|eval|execfile|filter|getattr|globals|hasattr|hash|hex|id|input|intern|isinstance|issubclass|iter|len|locals|map|max|min|oct|ord|pow|range|raw_input|reduce|reload|repr|round|setattr|sorted|sum|unichr|vars|zip|basestring|bool|buffer|classmethod|complex|dict|enumerate|file|float|frozenset|int|list|long|object|open|property|reversed|set|slice|staticmethod|str|super|tuple|type|unicode|xrange|abs|add|and|call|cmp|coerce|complex|contains|del|delattr|delete|delitem|delslice|div|divmod|enter|eq|exit|float|floordiv|ge|get|getattr|getattribute|getitem|getslice|gt|hash|hex|iadd|iand|idiv|ifloordiv|ilshift|imod|imul|init|int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|le|len|long|lshift|lt|mod|mul|ne|neg|new|nonzero|oct|or|pos|pow|radd|rand|rdiv|rdivmod|repr|rfloordiv|rlshift|rmod|rmul|ror|rpow|rrshift|rshift|rsub|rtruediv|rxor|set|setattr|setitem|finally|setslice|str|sub|truediv|unicode|xor|except|try|raise|assert|exec|print\n\t\t)\\s*\\()(?:(?!NS)[A-Za-z_][A-Za-z0-9_]*+\\b | :: )++ # actual name\n\t)\n\t \\s*(\\()'
+    'name': 'meta.function-call.python'
+  }
+  {
     'begin': '^\\s*(class)\\s+(?=[a-zA-Z_][a-zA-Z_0-9])'
     'beginCaptures':
       '1':
