@@ -22,34 +22,37 @@
     'body': 'self.fail(\'${1:message}\')$0'
   'New Class':
     'prefix': 'class'
-    'body': 'class ${1:ClassName}(${2:object}):\n\t"""${3:docstring for ClassName}"""\n\tdef __init__(self, ${4:arg}):\n\t\t${5:super(ClassName, self).__init__()}\n\t\tself.arg = arg\n\t\t$0'
+    'body': 'class ${1:ClassName}(${2:object}):\n    """${3:docstring for ClassName}"""\n    def __init__(self, ${4:arg}):\n        ${5:super(ClassName, self).__init__()}\n        self.arg = arg\n        $0'
   'New Method':
     'prefix': 'defs'
-    'body': 'def ${1:mname}(self, ${2:arg}):\n\t${3:pass}'
+    'body': 'def ${1:mname}(self, ${2:arg}):\n    ${3:pass}'
   'New Property':
     'prefix': 'property'
     'body': 'def ${1:foo}():\n    doc = "${2:The $1 property.}"\n    def fget(self):\n        ${3:return self._$1}\n    def fset(self, value):\n        ${4:self._$1 = value}\n    def fdel(self):\n        ${5:del self._$1}\n    return locals()\n$1 = property(**$1())$0'
+  'New Function':
+    'prefix': 'def'
+    'body': 'def ${1:fname}(${2:arg}):\n    ${3:pass}'
   'if':
     'prefix': 'if'
-    'body': 'if ${1:condition}:\n\t${2:pass}'
+    'body': 'if ${1:condition}:\n    ${2:pass}'
   'for':
     'prefix': 'for'
-    'body': 'for ${1:value} in ${2:variable}:\n\t${3:pass}'
+    'body': 'for ${1:value} in ${2:variable}:\n    ${3:pass}'
   'while':
     'prefix': 'while'
-    'body': 'while ${1:condition}:\n\t${2:pass}'
+    'body': 'while ${1:condition}:\n    ${2:pass}'
   'Try/Except/Else/Finally':
     'prefix': 'try'
-    'body': 'try:\n\t${1:pass}\nexcept${2: ${3:Exception} as ${4:e}}:\n\t${5:raise}\nelse:\n\t${6:pass}\nfinally:\n\t${7:pass}'
+    'body': 'try:\n    ${1:pass}\nexcept${2: ${3:Exception} as ${4:e}}:\n    ${5:raise}\nelse:\n    ${6:pass}\nfinally:\n    ${7:pass}'
   'Try/Except/Else':
     'prefix': 'try'
-    'body': 'try:\n\t${1:pass}\nexcept ${2:Exception} as ${3:e}:\n\t${4:raise $3}\nelse:\n\t${5:pass}'
+    'body': 'try:\n    ${1:pass}\nexcept ${2:Exception} as ${3:e}:\n    ${4:raise $3}\nelse:\n    ${5:pass}'
   'Try/Except/Finally':
     'prefix': 'try'
-    'body': 'try:\n\t${1:pass}\nexcept ${2:Exception} as ${3:e}:\n\t${4:raise $3}\nfinally:\n\t${5:pass}'
+    'body': 'try:\n    ${1:pass}\nexcept ${2:Exception} as ${3:e}:\n    ${4:raise $3}\nfinally:\n    ${5:pass}'
   'Try/Except':
     'prefix': 'try'
-    'body': 'try:\n\t${1:pass}\nexcept ${2:Exception} as ${3:e}:\n\t${4:raise $3}'
+    'body': 'try:\n    ${1:pass}\nexcept ${2:Exception} as ${3:e}:\n    ${4:raise $3}'
   'List Comprehension':
     'prefix': 'lc'
     'body': '[${1:value} for ${2:value} in ${3:variable}]'
@@ -64,7 +67,7 @@
     'body': '__${1:init}__'
   'if __name__ == \'__main__\'':
     'prefix': 'ifmain'
-    'body': 'if __name__ == \'__main__\':\n\t${1:main()}$0'
+    'body': 'if __name__ == \'__main__\':\n    ${1:main()}$0'
 '.source.python:not(.string)':
   'self':
     'prefix': '.'
