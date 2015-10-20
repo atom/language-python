@@ -296,3 +296,16 @@ describe "Python grammar", ->
       expect(tokens[1][0]).toEqual value: 'SELECT bar', scopes: ['source.python', scope]
       expect(tokens[2][0]).toEqual value: 'FROM foo', scopes: ['source.python', scope]
       expect(tokens[3][0]).toEqual value: delim, scopes: ['source.python', scope, 'punctuation.definition.string.end.python']
+  it "tokenizes a function definition with annotations", ->
+    tokens = grammar.tokenizeLines('def f(a: int) -> int:')
+
+    expect(tokens[0][0]).toEqual value: 'def', scopes: ['source.python', 'meta.function.python', 'storage.type.function.python']
+    expect(tokens[0][2]).toEqual value: 'f', scopes: ['source.python', 'meta.function.python', 'entity.name.function.python']
+    expect(tokens[0][3]).toEqual value: '(', scopes: ['source.python', 'meta.function.python', 'punctuation.definition.parameters.begin.python']
+    expect(tokens[1][1]).toEqual value: 'a', scopes: ['source.python', 'meta.function.python', 'meta.function.parameters.python', 'variable.parameter.function.python']
+    expect(tokens[1][2]).toEqual value: ':', scopes: ['source.python', 'meta.function.python', 'meta.function.parameters.python', 'punctuation.definition.annotation.parameter.python']
+    expect(tokens[2][1]).toEqual value: 'int', scopes: ['source.python', 'meta.function.python', 'meta.function.parameters.python', 'variable.annotation.function.python']
+    expect(tokens[4][0]).toEqual value: ')', scopes: ['source.python', 'meta.function.python', 'punctuation.definition.parameters.end.python']
+    expect(tokens[4][0]).toEqual value: '->', scopes: ['source.python', 'meta.function.python', 'punctuation.definition.annotation.return.python']
+    expect(tokens[4][0]).toEqual value: 'int', scopes: ['source.python', 'meta.function.python', 'variable.annotation.function.python']
+    expect(tokens[4][1]).toEqual value: ':', scopes: ['source.python', 'meta.function.python', 'punctuation.section.function.begin.python']
