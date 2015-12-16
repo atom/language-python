@@ -387,7 +387,7 @@ repository:
       }
       {
         comment: 'a decorator may be a function call which returns a decorator.'
-        begin: '^\\s*(?=@\\s*[A-Za-z_][A-Za-z0-9_]*(?:\\.[a-zA-Z_][a-zA-Z_0-9]*)*\\s*\\()'
+        begin: '^\\s*(?=@[A-Za-z_][A-Za-z0-9_]*(?:\\.[a-zA-Z_][a-zA-Z_0-9]*)*\\s*\\()'
         end: '(\\))'
         endCaptures:
           '1':
@@ -426,7 +426,7 @@ repository:
         ]
       }
       {
-        begin: '^\\s*(?=@\\s*[A-Za-z_][A-Za-z0-9_]*(?:\\.[a-zA-Z_][a-zA-Z_0-9]*)*)'
+        begin: '^\\s*(?=@[A-Za-z_][A-Za-z0-9_]*(?:\\.[a-zA-Z_][a-zA-Z_0-9]*)*)'
         contentName: 'entity.name.function.decorator.python3'
         end: '(?=\\s|$\\n?|#)'
         name: 'meta.function.decorator.python3'
