@@ -7,13 +7,3 @@
     'commentStart': '# '
     'increaseIndentPattern': '^\\s*(class|def|elif|else|except|finally|for|if|try|with|while)\\b.*:\\s*$'
     'decreaseIndentPattern': '^\\s*(elif|else|except|finally)\\b.*:'
-
-'.source.python3':
-  editor:
-    autoIndentOnPaste: false
-    softTabs: true
-    tabLength: 4
-    foldEndPattern: '^\\s*"""\\s*$'
-    commentStart: '# '
-    increaseIndentPattern: '^\\s*(class|def|elif|else|except|finally|for|if|try|with|while)\\b.*:\\s*$'
-    decreaseIndentPattern: '^\\s*(elif|else|except|finally)\\b.*:'
