@@ -548,8 +548,11 @@ repository:
             name: 'punctuation.definition.string.end.python3'
           '2':
             name: 'meta.empty-string.double.python3'
-        name: 'string.quoted.double.block.bytes-raw.python3'
+        name: 'string.quoted.double.block.raw-bytes.python3'
         patterns: [
+          {
+            include: '#constant_placeholder_printf'
+          }
           {
             include: '#regular_expressions'
           }
@@ -593,8 +596,14 @@ repository:
             name: 'punctuation.definition.string.end.python3'
           '2':
             name: 'meta.empty-string.double.python3'
-        name: 'string.quoted.double.block.unicode-raw.python3'
+        name: 'string.quoted.double.block.raw-unicode.python3'
         patterns: [
+          {
+            include: '#constant_placeholder_printf'
+          }
+          {
+            include: '#constant_placeholder_format'
+          }
           {
             include: '#regular_expressions'
           }
@@ -631,35 +640,21 @@ repository:
         ]
       }
       {
-        comment: 'double quoted bytes-raw string'
-        begin: '([bB][rR]|[rR][bB])(")'
-        beginCaptures:
+        comment: 'bytes double-quoted raw string'
+        match: '(?m)([rR][bB]|[bB][rR])(")((?:[^"\\\\]|\\\\.)*)(")'
+        captures:
           '1':
             name: 'storage.type.string.python3'
           '2':
             name: 'punctuation.definition.string.begin.python3'
-        end: '((?<=")(")|")|(\\n)'
-        endCaptures:
-          '1':
-            name: 'punctuation.definition.string.end.python3'
-          '2':
-            name: 'meta.empty-string.double.python3'
           '3':
-            name: 'invalid.illegal.unclosed-string.python3'
-        name: 'string.quoted.double.single-line.bytes-raw.python3'
-        patterns: [
-          {
-            match: '(\\\\\\n)|(\\\\")'
-            captures:
-              '1':
-                name: 'constant.character.escape.newline.python3'
-              '2':
-                name: 'constant.character.escape.double-quote.python3'
-          }
-          {
-            include: '#regular_expressions'
-          }
-        ]
+            patterns: [
+              {include: '#constant_placeholder_printf'}
+              {include: '#regular_expressions'}
+            ]
+          '4':
+            name: 'punctuation.definition.string.end.python3'
+        name: 'string.quoted.double.single-line.raw-bytes.python3'
       }
       {
         comment: 'double quoted bytes string'
@@ -688,35 +683,21 @@ repository:
         ]
       }
       {
-        comment: 'double quoted unicode-raw string'
-        begin: '([rR])(")'
-        beginCaptures:
+        comment: 'unicode double-quoted raw string'
+        match: '(?m)([rR])(")((?:[^"\\\\]|\\\\.)*)(")'
+        captures:
           '1':
             name: 'storage.type.string.python3'
           '2':
             name: 'punctuation.definition.string.begin.python3'
-        end: '((?<=")(")|")|(\\n)'
-        endCaptures:
-          '1':
-            name: 'punctuation.definition.string.end.python3'
-          '2':
-            name: 'meta.empty-string.double.python3'
           '3':
-            name: 'invalid.illegal.unclosed-string.python3'
-        name: 'string.quoted.double.single-line.unicode-raw.python3'
-        patterns: [
-          {
-            match: '(\\\\\\n)|(\\\\")'
-            captures:
-              '1':
-                name: 'constant.character.escape.newline.python3'
-              '2':
-                name: 'constant.character.escape.double-quote.python3'
-          }
-          {
-            include: '#regular_expressions'
-          }
-        ]
+            patterns: [
+              {include: '#constant_placeholder_printf'}
+              {include: '#regular_expressions'}
+            ]
+          '4':
+            name: 'punctuation.definition.string.end.python3'
+        name: 'string.quoted.double.single-line.raw-unicode.python3'
       }
       {
         comment: 'double quoted unicode string'
@@ -768,8 +749,11 @@ repository:
             name: 'punctuation.definition.string.end.python3'
           '2':
             name: 'meta.empty-string.single.python3'
-        name: 'string.quoted.single.block.bytes-raw.python3'
+        name: 'string.quoted.single.block.raw-bytes.python3'
         patterns: [
+          {
+            include: '#constant_placeholder_printf'
+          }
           {
             include: '#regular_expressions'
           }
@@ -813,8 +797,14 @@ repository:
             name: 'punctuation.definition.string.end.python3'
           '2':
             name: 'meta.empty-string.single.python3'
-        name: 'string.quoted.single.block.unicode-raw.python3'
+        name: 'string.quoted.single.block.raw-unicode.python3'
         patterns: [
+          {
+            include: '#constant_placeholder_printf'
+          }
+          {
+            include: '#constant_placeholder_format'
+          }
           {
             include: '#regular_expressions'
           }
@@ -851,35 +841,21 @@ repository:
         ]
       }
       {
-        comment: 'single quoted bytes-raw string'
-        begin: '([bB][rR]|[rR][bB])(\')'
-        beginCaptures:
+        comment: 'bytes single-quoted raw string'
+        match: '(?m)([rR][bB]|[bB][rR])(\')((?:[^\'\\\\]|\\\\.)*)(\')'
+        captures:
           '1':
             name: 'storage.type.string.python3'
           '2':
             name: 'punctuation.definition.string.begin.python3'
-        end: '((?<=\')(\')|\')|(\\n)'
-        endCaptures:
-          '1':
-            name: 'punctuation.definition.string.end.python3'
-          '2':
-            name: 'meta.empty-string.single.python3'
           '3':
-            name: 'invalid.illegal.unclosed-string.python3'
-        name: 'string.quoted.single.single-line.bytes-raw.python3'
-        patterns: [
-          {
-            match: '(\\\\\\n)|(\\\\\')'
-            captures:
-              '1':
-                name: 'constant.character.escape.newline.python3'
-              '2':
-                name: 'constant.character.escape.double-quote.python3'
-          }
-          {
-            include: '#regular_expressions'
-          }
-        ]
+            patterns: [
+              {include: '#constant_placeholder_printf'}
+              {include: '#regular_expressions'}
+            ]
+          '4':
+            name: 'punctuation.definition.string.end.python3'
+        name: 'string.quoted.single.single-line.raw-bytes.python3'
       }
       {
         comment: 'single quoted bytes string'
@@ -908,35 +884,21 @@ repository:
         ]
       }
       {
-        comment: 'single quoted unicode-raw string'
-        begin: '([rR])(\')'
-        beginCaptures:
+        comment: 'unicode single-quoted raw string'
+        match: '(?m)([rR])(\')((?:[^\'\\\\]|\\\\.)*)(\')'
+        captures:
           '1':
             name: 'storage.type.string.python3'
           '2':
             name: 'punctuation.definition.string.begin.python3'
-        end: '((?<=\')(\')|\')|(\\n)'
-        endCaptures:
-          '1':
-            name: 'punctuation.definition.string.end.python3'
-          '2':
-            name: 'meta.empty-string.single.python3'
           '3':
-            name: 'invalid.illegal.unclosed-string.python3'
-        name: 'string.quoted.single.single-line.unicode-raw.python3'
-        patterns: [
-          {
-            match: '(\\\\\\n)|(\\\\\')'
-            captures:
-              '1':
-                name: 'constant.character.escape.newline.python3'
-              '2':
-                name: 'constant.character.escape.double-quote.python3'
-          }
-          {
-            include: '#regular_expressions'
-          }
-        ]
+            patterns: [
+              {include: '#constant_placeholder_printf'}
+              {include: '#regular_expressions'}
+            ]
+          '4':
+            name: 'punctuation.definition.string.end.python3'
+        name: 'string.quoted.single.single-line.raw-unicode.python3'
       }
       {
         comment: 'single quoted unicode string'
@@ -1332,110 +1294,110 @@ patterns: [
   {
     include: '#language_variables'
   }
-  # {
-  #   begin: '(\\()'
-  #   end: '(\\))'
-  #   patterns: [
-  #     {
-  #       include: '$self'
-  #     }
-  #   ]
-  # }
-  # {
-  #   captures:
-  #     '1':
-  #       name: 'punctuation.definition.list.begin.python3'
-  #     '2':
-  #       name: 'meta.empty-list.python3'
-  #     '3':
-  #       name: 'punctuation.definition.list.end.python3'
-  #   match: '(\\[)(\\s*(\\]))\\b'
-  # }
-  # {
-  #   begin: '(\\[)'
-  #   beginCaptures:
-  #     '1':
-  #       name: 'punctuation.definition.list.begin.python3'
-  #   end: '(\\])'
-  #   endCaptures:
-  #     '1':
-  #       name: 'punctuation.definition.list.end.python3'
-  #   name: 'meta.structure.list.python3'
-  #   patterns: [
-  #     {
-  #       begin: '(?<=\\[|\\,)\\s*(?![\\],])'
-  #       contentName: 'meta.structure.list.item.python3'
-  #       end: '\\s*(?:(,)|(?=\\]))'
-  #       endCaptures:
-  #         '1':
-  #           name: 'punctuation.separator.list.python3'
-  #       patterns: [
-  #         {
-  #           include: '$self'
-  #         }
-  #       ]
-  #     }
-  #   ]
-  # }
-  # {
-  #   captures:
-  #     '1':
-  #       name: 'punctuation.definition.tuple.begin.python3'
-  #     '2':
-  #       name: 'meta.empty-tuple.python3'
-  #     '3':
-  #       name: 'punctuation.definition.tuple.end.python3'
-  #   match: '(\\()(\\s*(\\)))'
-  #   name: 'meta.structure.tuple.python3'
-  # }
-  # {
-  #   captures:
-  #     '1':
-  #       name: 'punctuation.definition.dictionary.begin.python3'
-  #     '2':
-  #       name: 'meta.empty-dictionary.python3'
-  #     '3':
-  #       name: 'punctuation.definition.dictionary.end.python3'
-  #   match: '(\\{)(\\s*(\\}))'
-  #   name: 'meta.structure.dictionary.python3'
-  # }
-  # {
-  #   begin: '(\\{)'
-  #   beginCaptures:
-  #     '1':
-  #       name: 'punctuation.definition.dictionary.begin.python3'
-  #   end: '(\\})'
-  #   endCaptures:
-  #     '1':
-  #       name: 'punctuation.definition.dictionary.end.python3'
-  #   name: 'meta.structure.dictionary.python3'
-  #   patterns: [
-  #     {
-  #       begin: '(?<=\\{|\\,|^)\\s*(?![\\},])'
-  #       contentName: 'meta.structure.dictionary.key.python3'
-  #       end: '\\s*(?:(?=\\})|(\\:))'
-  #       endCaptures:
-  #         '1':
-  #           name: 'punctuation.separator.valuepair.dictionary.python3'
-  #       patterns: [
-  #         {
-  #           include: '$self'
-  #         }
-  #       ]
-  #     }
-  #     {
-  #       begin: '(?<=\\:|^)\\s*'
-  #       contentName: 'meta.structure.dictionary.value.python3'
-  #       end: '\\s*(?:(?=\\})|(,))'
-  #       endCaptures:
-  #         '1':
-  #           name: 'punctuation.separator.dictionary.python3'
-  #       patterns: [
-  #         {
-  #           include: '$self'
-  #         }
-  #       ]
-  #     }
-  #   ]
-  # }
+  {
+    begin: '(\\()'
+    end: '(\\))'
+    patterns: [
+      {
+        include: '$self'
+      }
+    ]
+  }
+  {
+    captures:
+      '1':
+        name: 'punctuation.definition.list.begin.python3'
+      '2':
+        name: 'meta.empty-list.python3'
+      '3':
+        name: 'punctuation.definition.list.end.python3'
+    match: '(\\[)(\\s*(\\]))\\b'
+  }
+  {
+    begin: '(\\[)'
+    beginCaptures:
+      '1':
+        name: 'punctuation.definition.list.begin.python3'
+    end: '(\\])'
+    endCaptures:
+      '1':
+        name: 'punctuation.definition.list.end.python3'
+    name: 'meta.structure.list.python3'
+    patterns: [
+      {
+        begin: '(?<=\\[|\\,)\\s*(?![\\],])'
+        contentName: 'meta.structure.list.item.python3'
+        end: '\\s*(?:(,)|(?=\\]))'
+        endCaptures:
+          '1':
+            name: 'punctuation.separator.list.python3'
+        patterns: [
+          {
+            include: '$self'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    captures:
+      '1':
+        name: 'punctuation.definition.tuple.begin.python3'
+      '2':
+        name: 'meta.empty-tuple.python3'
+      '3':
+        name: 'punctuation.definition.tuple.end.python3'
+    match: '(\\()(\\s*(\\)))'
+    name: 'meta.structure.tuple.python3'
+  }
+  {
+    captures:
+      '1':
+        name: 'punctuation.definition.dictionary.begin.python3'
+      '2':
+        name: 'meta.empty-dictionary.python3'
+      '3':
+        name: 'punctuation.definition.dictionary.end.python3'
+    match: '(\\{)(\\s*(\\}))'
+    name: 'meta.structure.dictionary.python3'
+  }
+  {
+    begin: '(\\{)'
+    beginCaptures:
+      '1':
+        name: 'punctuation.definition.dictionary.begin.python3'
+    end: '(\\})'
+    endCaptures:
+      '1':
+        name: 'punctuation.definition.dictionary.end.python3'
+    name: 'meta.structure.dictionary.python3'
+    patterns: [
+      {
+        begin: '(?<=\\{|\\,|^)\\s*(?![\\},])'
+        contentName: 'meta.structure.dictionary.key.python3'
+        end: '\\s*(?:(?=\\})|(\\:))'
+        endCaptures:
+          '1':
+            name: 'punctuation.separator.valuepair.dictionary.python3'
+        patterns: [
+          {
+            include: '$self'
+          }
+        ]
+      }
+      {
+        begin: '(?<=\\:|^)\\s*'
+        contentName: 'meta.structure.dictionary.value.python3'
+        end: '\\s*(?:(?=\\})|(,))'
+        endCaptures:
+          '1':
+            name: 'punctuation.separator.dictionary.python3'
+        patterns: [
+          {
+            include: '$self'
+          }
+        ]
+      }
+    ]
+  }
 ]
