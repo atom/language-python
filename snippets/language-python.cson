@@ -59,8 +59,11 @@
   'New Function':
     'prefix': 'def'
     'body': 'def ${1:fname}(${2:arg}):\n\t${3:pass}'
-  'New Property':
+  'New Property (decorator)':
     'prefix': 'property'
+    'body': '@property\ndef ${1:prop_name}(self):\n\treturn ${2:"foo"}'
+  'New Property (function)':
+    'prefix': 'propertyf'
     'body': 'def ${1:foo}():\n    doc = "${2:The $1 property.}"\n    def fget(self):\n        ${3:return self._$1}\n    def fset(self, value):\n        ${4:self._$1 = value}\n    def fdel(self):\n        ${5:del self._$1}\n    return locals()\n$1 = property(**$1())$0'
   'if':
     'prefix': 'if'
