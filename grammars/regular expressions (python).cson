@@ -1,10 +1,11 @@
+'name': 'Regular Expressions (Python)'
+'scopeName': 'source.regexp.python'
 'comment': 'Matches Python\'s regular expression syntax.'
+'foldingStartMarker': '(/\\*|\\{|\\()'
+'foldingStopMarker': '(\\*/|\\}|\\))'
 'fileTypes': [
   're'
 ]
-'foldingStartMarker': '(/\\*|\\{|\\()'
-'foldingStopMarker': '(\\*/|\\}|\\))'
-'name': 'Regular Expressions (Python)'
 'patterns': [
   {
     'match': '\\\\[bBAZzG]|\\^|\\$'
@@ -55,7 +56,7 @@
         'name': 'meta.assertion.look-behind.regexp'
       '6':
         'name': 'meta.assertion.negative-look-behind.regexp'
-    'end': '(\\))'
+    'end': '(\\))|(?="""|\'\'\')'
     'endCaptures':
       '1':
         'name': 'punctuation.definition.group.regexp'
@@ -76,7 +77,7 @@
       '3':
         'name': 'entity.name.section.back-reference.regexp'
     'comment': 'we can make this more sophisticated to match the | character that separates yes-pattern from no-pattern, but it\'s not really necessary.'
-    'end': '(\\))'
+    'end': '(\\))|(?="""|\'\'\')'
     'name': 'meta.group.assertion.conditional.regexp'
     'patterns': [
       {
@@ -97,7 +98,7 @@
         'name': 'punctuation.definition.group.capture.regexp'
       '6':
         'name': 'punctuation.definition.group.no-capture.regexp'
-    'end': '(\\))'
+    'end': '(\\))|(?="""|\'\'\')'
     'endCaptures':
       '1':
         'name': 'punctuation.definition.group.regexp'
@@ -130,7 +131,7 @@
             'name': 'punctuation.definition.character-class.regexp'
           '2':
             'name': 'keyword.operator.negation.regexp'
-        'end': '(\\])'
+        'end': '(\\])|(?="""|\'\'\')'
         'endCaptures':
           '1':
             'name': 'punctuation.definition.character-class.regexp'
@@ -151,4 +152,3 @@
         ]
       }
     ]
-'scopeName': 'source.regexp.python'
