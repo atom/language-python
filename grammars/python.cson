@@ -512,7 +512,7 @@
     'captures':
       '1':
         'name': 'storage.type.function.python'
-    'match': '\\b(def|lambda)\\b'
+    'match': '\\b(def|lambda|async def)\\b'
   }
   {
     'captures':
