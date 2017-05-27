@@ -4,5 +4,5 @@
     'softTabs': true
     'tabLength': 4
     'commentStart': '# '
-    'increaseIndentPattern': '^\\s*(class|def|elif|else|except|finally|for|if|try|with|while)\\b.*:\\s*$'
-    'decreaseIndentPattern': '^\\s*(elif|else|except|finally)\\b.*:'
+    'increaseIndentPattern': '^\\s*(((class|def|elif|except|finally|for|if|try|with|while)\\b.*:.*)|(else\\b.*:\\s*))$'
+    'decreaseIndentPattern': '^\\s*(elif|else|except|finally)\\b.*:\\s*$'
