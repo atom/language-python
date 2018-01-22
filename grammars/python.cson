@@ -239,14 +239,10 @@
     'beginCaptures':
       '1':
         'name': 'storage.type.function.python'
-    'end': '(\\))\\s*(?:(\\:)|(.*$\\n?))'
+    'end': '\\:'
     'endCaptures':
-      '1':
-        'name': 'punctuation.definition.parameters.end.python'
-      '2':
+      '0':
         'name': 'punctuation.section.function.begin.python'
-      '3':
-        'name': 'invalid.illegal.missing-section-begin.python'
     'name': 'meta.function.python'
     'patterns': [
       {
@@ -260,12 +256,12 @@
         ]
       }
       {
-        'begin': '(\\()'
+        'begin': '\\('
         'beginCaptures':
-          '1':
+          '0':
             'name': 'punctuation.definition.parameters.begin.python'
         'contentName': 'meta.function.parameters.python'
-        'end': '(?=\\)\\s*\\:)'
+        'end': '\\)'
         'patterns': [
           {
             'include': '#line_comments'
