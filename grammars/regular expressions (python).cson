@@ -85,7 +85,7 @@
     ]
   }
   {
-    'begin': '(\\()((\\?P<)([a-z]\\w*)(>)|(\\?:))?'
+    'begin': '(?<!\\\\)(\\()((\\?P<)([a-z]\\w*)(>)|(\\?:))?'
     'beginCaptures':
       '1':
         'name': 'punctuation.definition.group.regexp'
