@@ -1,4 +1,4 @@
-# Python language support in Atom
+# Python language supporting in Atom
 [![macOS Build Status](https://travis-ci.org/atom/language-python.svg?branch=master)](https://travis-ci.org/atom/language-python)
 [![Windows Build Status](https://ci.appveyor.com/api/projects/status/hmxrb9jttjh41es9/branch/master?svg=true)](https://ci.appveyor.com/project/Atom/language-python/branch/master)
 [![Dependency Status](https://david-dm.org/atom/language-python.svg)](https://david-dm.org/atom/language-python)
