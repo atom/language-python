@@ -1,0 +1,88 @@
+import pyttsx3
+import datetime
+import speech_recognition as sr
+import wikipedia
+import webbrowser
+import random
+import os# for media
+engine = pyttsx3.init('sapi5')
+
+voices= engine.getProperty('voices') #getting details of current voice
+print(voices[1].id)#david ki voice [1] girl voice
+engine.setProperty('voice', voices[1].id)
+def speak(audio):
+    engine.say(audio)
+    engine.runAndWait() #Without this command, speech will not be audible to us.
+# time ko dekh kar wish karega
+
+def wishme():
+    hour = int(datetime.datetime.now().hour)
+    if hour >= 0 and hour < 12:
+        speak("Good Morning!")
+
+    elif hour >= 12 and hour < 18:
+        speak("Good Afternoon!")
+
+    else:
+        speak("Good Evening!")
+
+    speak("I am Jarvis Sir. Please tell me how may I help you ")
+wishme()
+
+
+def takeCommand():
+    # It takes microphone input from the user and returns string output
+
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Listening...")
+        r.pause_threshold = 1 # 1 second wait krega bolne ke baad
+        audio = r.listen(source)
+
+    try:
+        print("Recognizing...")
+        query = r.recognize_google(audio, language='en-in')  # Using google for voice recognition.
+        print("User said: ",query)  # User query will be printed.
+# jo bola wo yadi recognize nahi kar paya to exeption me jayega
+    except Exception as e:
+        # print(e)
+        print("Say that again please...")  # Say that again will be printed in case of improper voice
+        return "None"  # None string will be returned
+    return query
+
+
+if __name__ == "__main__":
+    speak("mayank is a good boy")
+
+    while True:
+        # if 1:
+        query = takeCommand().lower()  # Converting user query into lower case
+
+        # Logic for executing tasks based on query
+        if 'wikipedia' in query:  # if wikipedia found in the query then this block will be executed
+            speak('Searching Wikipedia...')
+            query = query.replace("wikipedia", "")
+            results = wikipedia.summary(query, sentences=2)#wikipedia se kitne sentence padta hai
+            speak("According to Wikipedia")
+            print(results)
+            speak(results)
+        elif 'open youtube' in query:
+            webbrowser.open("youtube.com") #bolne me youtube bola to true ho jayega koi bhi website khol sakte hai
+        elif 'open google' in query:
+            webbrowser.open("google.com")
+        elif 'play music' in query:
+            music_dir = 'E:\\New folder\\music'
+            songs = os.listdir(music_dir)
+            print(songs)
+            k=random.randint(1,10)
+            os.startfile(os.path.join(music_dir, songs[k]))
+        elif 'the time' in query:
+            strTime = datetime.datetime.now().strftime("%H:%M:%S")
+            speak(f"Sir, the time is {strTime}")
+
+        elif 'open opera' in query:#for apps open
+            codePath = "C:\\Users\\com\\AppData\\Local\\Programs\\Opera\\launcher.exe"
+            os.startfile(codePath)
+        elif 'open photo' in query:#for apps photo
+            codePath = "E:\\MAYANK SINGH\\di marridge"
+            os.startfile(codePath)
