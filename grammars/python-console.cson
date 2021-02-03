@@ -15,4 +15,7 @@
           'include': 'source.python'
         ]
   }
+  {
+    'include': 'text.python.traceback'
+  }
 ]

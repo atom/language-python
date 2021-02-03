@@ -5,13 +5,17 @@
 ]
 'patterns': [
   {
-    'match': '^  File ("[^"]+"), line (\\d+)(?:, in (.+))?$'
+    'match': '^  File (")([^"]+)("), line (\\d+)(?:, in (.+))?$'
     'captures': {
       '1':
-        'name': 'string.python.traceback'
+        'name': 'string.begin.python.traceback'
       '2':
-        'name': 'constant.numeric.python.traceback'
+        'name': 'string.python.traceback'
       '3':
+        'name': 'string.end.python.traceback'
+      '4':
+        'name': 'constant.numeric.python.traceback'
+      '5':
         'name': 'entity.name.function.python.traceback'
     }
   }
