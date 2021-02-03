@@ -24,6 +24,8 @@ fileTypes: [
   'wsgi'
 ]
 
+injectionRegex: '^py$|python|Python'
+
 folds: [
   {
     type: ['if_statement']
