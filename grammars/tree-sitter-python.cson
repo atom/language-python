@@ -184,7 +184,8 @@ scopes:
   '"or"': 'keyword.operator.logical.python'
   '"not"': 'keyword.operator.logical.python'
   '"is"': 'keyword.operator.logical.python'
-  '"->"': 'keyword.control.return'
+  '"->"': 'keyword.operator.function-annotation'
+  '":"': 'punctuation.separator'
 
   '"["': 'punctuation.definition.begin.bracket.square'
   '"]"': 'punctuation.definition.end.bracket.square'
@@ -193,3 +194,4 @@ scopes:
   '"}"': 'punctuation.section.block.end.bracket.curly'
   '"("': 'punctuation.section.parens.begin.bracket.round'
   '")"': 'punctuation.section.parens.end.bracket.round'
+
