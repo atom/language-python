@@ -98,6 +98,7 @@ scopes:
   'false': 'constant.language'
   'integer': 'constant.numeric'
   'float': 'constant.numeric'
+  '"..."': 'constant.ellipsis.other'
 
   'type > identifier': 'support.storage.type'
 
