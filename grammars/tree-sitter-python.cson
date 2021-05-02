@@ -58,12 +58,12 @@ folds: [
     end: {type: '}', index: -1}
   },
   {
-    type: 'comment'
+    type: 'string'
     start: {type: '"\"\"\""', index: 0}
     end: {type: '"\"\"\""', index: -1}
   },
   {
-    type: 'comment'
+    type: 'string'
     start: {type: '"\'\'\'"', index: 0}
     end: {type: '"\'\'\'"', index: -1}
   }
