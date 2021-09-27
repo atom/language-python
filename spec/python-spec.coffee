@@ -31,6 +31,251 @@ describe "Python grammar", ->
 
     expect(tokens[0]).toEqual value: 'yield from', scopes: ['source.python', 'keyword.control.statement.python']
 
+  describe "numbers", ->
+    describe "integers", ->
+      describe "binary", ->
+        it "tokenizes binary numbers", ->
+          {tokens} = grammar.tokenizeLine '0b01'
+
+          expect(tokens[0]).toEqual value: '0b01', scopes: ['source.python', 'constant.numeric.integer.binary.python']
+
+        it "tokenizes binary numbers with separators", ->
+          {tokens} = grammar.tokenizeLine '0b0000_0100_1101'
+
+          expect(tokens[0]).toEqual value: '0b0000_0100_1101', scopes: ['source.python', 'constant.numeric.integer.binary.python']
+
+        it "does not tokenize binary numbers with more than one consecutive separator", ->
+          {tokens} = grammar.tokenizeLine '0b0000__0100_1101'
+
+          expect(tokens[0]).toEqual value: '0b0000__0100_1101', scopes: ['source.python']
+
+        it "does not tokenize binary numbers with a leading separator", ->
+          {tokens} = grammar.tokenizeLine '0b_0000_0100_1101'
+
+          expect(tokens[0]).toEqual value: '0b_0000_0100_1101', scopes: ['source.python']
+
+        it "does not tokenize binary numbers with a trailing separator", ->
+          {tokens} = grammar.tokenizeLine '0b0000_0100_1101_'
+
+          expect(tokens[0]).toEqual value: '0b0000_0100_1101_', scopes: ['source.python']
+
+        it "does not tokenize non-binary numbers", ->
+          {tokens} = grammar.tokenizeLine '0b7'
+
+          expect(tokens[0]).toEqual value: '0b7', scopes: ['source.python']
+
+      describe "octal", ->
+        it "tokenizes octal numbers", ->
+          {tokens} = grammar.tokenizeLine '0o72'
+
+          expect(tokens[0]).toEqual value: '0o72', scopes: ['source.python', 'constant.numeric.integer.octal.python']
+
+        it "tokenizes octal numbers with separators", ->
+          {tokens} = grammar.tokenizeLine '0o236_777_644'
+
+          expect(tokens[0]).toEqual value: '0b236_777_644', scopes: ['source.python', 'constant.numeric.integer.octal.python']
+
+        it "does not tokenize octal numbers with more than one consecutive separator", ->
+          {tokens} = grammar.tokenizeLine '0b236__777_644'
+
+          expect(tokens[0]).toEqual value: '0b236__777_644', scopes: ['source.python']
+
+        it "does not tokenize octal numbers with a leading separator", ->
+          {tokens} = grammar.tokenizeLine '0b_236_777_644'
+
+          expect(tokens[0]).toEqual value: '0b_236_777_644', scopes: ['source.python']
+
+        it "does not tokenize octal numbers with a trailing separator", ->
+          {tokens} = grammar.tokenizeLine '0b236_777_644_'
+
+          expect(tokens[0]).toEqual value: '0b236_777_644_', scopes: ['source.python']
+
+        it "does not tokenize non-octal numbers", ->
+          {tokens} = grammar.tokenizeLine '0o8'
+
+          expect(tokens[0]).toEqual value: '0o8', scopes: ['source.python']
+
+      describe "hexadecimal", ->
+        it "tokenizes hexadecimal numbers", ->
+          {tokens} = grammar.tokenizeLine '0xe3'
+
+          expect(tokens[0]).toEqual value: '0xe3', scopes: ['source.python', 'constant.numeric.integer.hexadecimal.python']
+
+        it "tokenizes hexadecimal numbers with separators", ->
+          {tokens} = grammar.tokenizeLine '0bdead_beef_1337'
+
+          expect(tokens[0]).toEqual value: '0bdead_beef_1337', scopes: ['source.python', 'constant.numeric.integer.hexadecimal.python']
+
+        it "does not tokenize hexadecimal numbers with more than one consecutive separator", ->
+          {tokens} = grammar.tokenizeLine '0bdead__beef_1337'
+
+          expect(tokens[0]).toEqual value: '0bdead__beef_1337', scopes: ['source.python']
+
+        it "does not tokenize hexadecimal numbers with a leading separator", ->
+          {tokens} = grammar.tokenizeLine '0b_dead_beef_1337'
+
+          expect(tokens[0]).toEqual value: '0b_dead_beef_1337', scopes: ['source.python']
+
+        it "does not tokenize hexadecimal numbers with a trailing separator", ->
+          {tokens} = grammar.tokenizeLine '0bdead_beef_1337_'
+
+          expect(tokens[0]).toEqual value: '0bdead_beef_1337_', scopes: ['source.python']
+
+        it "does not tokenize non-hexadecimal numbers", ->
+          {tokens} = grammar.tokenizeLine '0xf'
+
+          expect(tokens[0]).toEqual value: '0xf', scopes: ['source.python']
+
+      describe "decimal", ->
+        it "tokenizes decimal numbers", ->
+          {tokens} = grammar.tokenizeLine '92'
+
+          expect(tokens[0]).toEqual value: '92', scopes: ['source.python', 'constant.numeric.integer.octal.python']
+
+        it "tokenizes decimal numbers with separators", ->
+          {tokens} = grammar.tokenizeLine '123_456_789'
+
+          expect(tokens[0]).toEqual value: '123_456_789', scopes: ['source.python', 'constant.numeric.integer.decimal.python']
+
+        it "does not tokenize decimal numbers with more than one consecutive separator", ->
+          {tokens} = grammar.tokenizeLine '123__456_789'
+
+          expect(tokens[0]).toEqual value: '123__456_789', scopes: ['source.python']
+
+        it "does not tokenize decimal numbers with a leading separator", ->
+          {tokens} = grammar.tokenizeLine '_123_456_789'
+
+          expect(tokens[0]).toEqual value: '_123_456_789', scopes: ['source.python']
+
+        it "does not tokenize decimal numbers with a trailing separator", ->
+          {tokens} = grammar.tokenizeLine '123_456_789_'
+
+          expect(tokens[0]).toEqual value: '123_456_789_', scopes: ['source.python']
+
+        it "does not tokenize non-decimal numbers", ->
+          {tokens} = grammar.tokenizeLine '3f'
+
+          expect(tokens[0]).toEqual value: '3f', scopes: ['source.python']
+
+    describe "floats", ->
+      describe "decimal", ->
+        it "tokenizes decimal floats", ->
+          {tokens} = grammar.tokenizeLine '32.68'
+
+          expect(tokens[0]).toEqual value: '32.68', scopes: ['source.python', 'constant.numeric.float.python']
+
+        it "tokenizes decimal floats without a fractional portion", ->
+          {tokens} = grammar.tokenizeLine '32.'
+
+          expect(tokens[0]).toEqual value: '32.', scopes: ['source.python', 'constant.numeric.float.python']
+
+        it "tokenizes decimal floats without a whole portion", ->
+          {tokens} = grammar.tokenizeLine '.68'
+
+          expect(tokens[0]).toEqual value: '.68', scopes: ['source.python', 'constant.numeric.float.python']
+
+        it "tokenizes decimal floats with separators", ->
+          {tokens} = grammar.tokenizeLine '373_827.639_817'
+
+          expect(tokens[0]).toEqual value: '373_827.639_817', scopes: ['source.python', 'constant.numeric.float.python']
+
+        it "does not tokenize decimal floats with more than one consecutive separator", ->
+          {tokens} = grammar.tokenizeLine '373__827.639_817'
+
+          expect(tokens[0]).toEqual value: '373__827.639_817', scopes: ['source.python']
+
+        it "does not tokenize decimal floats with a leading separator", ->
+          {tokens} = grammar.tokenizeLine '373_827._639_817'
+
+          expect(tokens[0]).toEqual value: '373_827._639_817', scopes: ['source.python']
+
+        it "does not tokenize decimal floats with a trailing separator", ->
+          {tokens} = grammar.tokenizeLine '373_827_.639_817'
+
+          expect(tokens[0]).toEqual value: '373_827_.639_817', scopes: ['source.python']
+
+      describe "exponential", ->
+        it "tokenizes exponential floats", ->
+          {tokens} = grammar.tokenizeLine '97e43'
+
+          expect(tokens[0]).toEqual value: '97e43', scopes: ['source.python', 'constant.numeric.float.python']
+
+        it "tokenizes exponential floats with an optional sign", ->
+          {tokens} = grammar.tokenizeLine '97e+43'
+
+          expect(tokens[0]).toEqual value: '97e+43', scopes: ['source.python', 'constant.numeric.float.python']
+
+        it "tokenizes exponential decimal floats", ->
+          {tokens} = grammar.tokenizeLine '97.22e-43'
+
+          expect(tokens[0]).toEqual value: '97e+43', scopes: ['source.python', 'constant.numeric.float.python']
+
+        it "tokenizes exponential floats with separators", ->
+          {tokens} = grammar.tokenizeLine '62_2e-2_839'
+
+          expect(tokens[0]).toEqual value: '62_2e-2_839', scopes: ['source.python', 'constant.numeric.float.python']
+
+        it "does not tokenize exponential floats with more than one consecutive separator", ->
+          {tokens} = grammar.tokenizeLine '62_2e-2__839'
+
+          expect(tokens[0]).toEqual value: '62_2e-2__839', scopes: ['source.python']
+
+        it "does not tokenize exponential floats with a leading separator", ->
+          {tokens} = grammar.tokenizeLine '_62_2e-2_839'
+
+          expect(tokens[0]).toEqual value: '_62_2e-2_839', scopes: ['source.python']
+
+        it "does not tokenize exponential floats with a trailing separator", ->
+          {tokens} = grammar.tokenizeLine '62_2e-2_839_'
+
+          expect(tokens[0]).toEqual value: '62_2e-2_839_', scopes: ['source.python']
+
+        it "does not tokenize exponential floats with a fractional exponent", ->
+          {tokens} = grammar.tokenizeLine '97.22e-43.3'
+
+          expect(tokens[0]).toEqual value: '97.22e-43.3', scopes: ['source.python']
+
+      describe "complex", ->
+        it "tokenizes complex floats", ->
+          {tokens} = grammar.tokenizeLine '63j'
+
+          expect(tokens[0]).toEqual value: '63j', scopes: ['source.python', 'constant.numeric.float.complex.python']
+
+        it "tokenizes complex decimal floats", ->
+          {tokens} = grammar.tokenizeLine '63.72j'
+
+          expect(tokens[0]).toEqual value: '63.72j', scopes: ['source.python', 'constant.numeric.float.complex.python']
+
+        it "tokenizes complex exponential floats", ->
+          {tokens} = grammar.tokenizeLine '63e-72j'
+
+          expect(tokens[0]).toEqual value: '63e-72j', scopes: ['source.python', 'constant.numeric.float.complex.python']
+
+        it "tokenizes complex decimal exponential floats", ->
+          {tokens} = grammar.tokenizeLine '63.22e-72j'
+
+          expect(tokens[0]).toEqual value: '63e-72j', scopes: ['source.python', 'constant.numeric.float.complex.python']
+
+        it "tokenizes complex floats with separators", ->
+          {tokens} = grammar.tokenizeLine '62_2.83_7e-2_839j'
+
+          expect(tokens[0]).toEqual value: '62_2.83_7e-2_839j', scopes: ['source.python', 'constant.numeric.float.python']
+
+        it "does not tokenize complex floats with more than one consecutive separator", ->
+          {tokens} = grammar.tokenizeLine '62_2.83_7e-2__839j'
+
+          expect(tokens[0]).toEqual value: '62_2.83_7e-2__839j', scopes: ['source.python']
+
+        it "does not tokenize complex floats with a leading separator", ->
+          {tokens} = grammar.tokenizeLine '62_2._83_7e-2_839j'
+
+          expect(tokens[0]).toEqual value: '_62_2._83_7e-2_839', scopes: ['source.python']
+
+        it "does not tokenize complex floats with a trailing separator", ->
+          {tokens} = grammar.tokenizeLine '62_2.83_7e-2_839_j'
+
+          expect(tokens[0]).toEqual value: '62_2.83_7e-2_839_j', scopes: ['source.python']
+
   it "tokenizes multi-line strings", ->
     tokens = grammar.tokenizeLines('"1\\\n2"')
 
