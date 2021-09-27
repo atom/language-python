@@ -252,9 +252,9 @@ describe "Python grammar", ->
           expect(tokens[0]).toEqual value: '63e-72j', scopes: ['source.python', 'constant.numeric.float.complex.python']
 
         it "tokenizes complex decimal exponential floats", ->
-          {tokens} = grammar.tokenizeLine '63.22e-72j'
+          {tokens} = grammar.tokenizeLine '63.e-72j'
 
-          expect(tokens[0]).toEqual value: '63e-72j', scopes: ['source.python', 'constant.numeric.float.complex.python']
+          expect(tokens[0]).toEqual value: '63.e-72j', scopes: ['source.python', 'constant.numeric.float.complex.python']
 
         it "tokenizes complex floats with separators", ->
           {tokens} = grammar.tokenizeLine '62_2.83_7e-2_839j'
