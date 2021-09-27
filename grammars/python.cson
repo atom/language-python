@@ -62,7 +62,8 @@
     'name': 'constant.numeric.integer.binary.python'
   }
   {
-    'match': '\\b(?i:(((\\d(?:_?\\d)*(\\.(\\d(?:_?\\d)*)?)?|(?<=[^0-9a-zA-Z_])\\.\\d(?:_?\\d)*)(e[\\-\\+]?\\d(?:_?\\d)*)?))J)\\b'
+    # Use a custom word boundary for the second half as floats beginning with . won't be matched by \b
+    'match': '(?i:(((\\b\\d(?:_?\\d)*(\\.(\\d(?:_?\\d)*)?)?|(?<=[^0-9a-zA-Z_]|^)\\.\\d(?:_?\\d)*)(e[\\-\\+]?\\d(?:_?\\d)*)?))J)\\b'
     'name': 'constant.numeric.complex.python'
   }
   {
@@ -71,7 +72,8 @@
     'name': 'constant.numeric.float.python'
   }
   {
-    'match': '(?<=[^0-9a-zA-Z_])(?i:(\\.\\d(?:_?\\d)*(e[\\-\\+]?\\d(?:_?\\d)*)?))\\b'
+    # Use a custom word boundary as floats beginning with . won't be matched by \b
+    'match': '(?<=[^0-9a-zA-Z_]|^)(?i:(\\.\\d(?:_?\\d)*(e[\\-\\+]?\\d(?:_?\\d)*)?))\\b'
     'name': 'constant.numeric.float.python'
   }
   {
