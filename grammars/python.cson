@@ -66,7 +66,8 @@
     'name': 'constant.numeric.complex.python'
   }
   {
-    'match': '\\b(?i:(\\d(?:_?\\d)*\\.(\\d(?:_?\\d)*)?(e[\\-\\+]?\\d(?:_?\\d)*)?))\\b'
+    # Use a custom word boundary as floats ending with . won't be matched by \b
+    'match': '\\b(?i:(\\d(?:_?\\d)*\\.(\\d(?:_?\\d)*)?(e[\\-\\+]?\\d(?:_?\\d)*)?))(?=[^a-zA-Z_]|$)'
     'name': 'constant.numeric.float.python'
   }
   {
