@@ -269,7 +269,7 @@ describe "Python grammar", ->
         it "does not tokenize complex floats with a leading separator", ->
           {tokens} = grammar.tokenizeLine '62_2._83_7e-2_839j'
 
-          expect(tokens[0]).toEqual value: '_62_2', scopes: ['source.python', 'constant.numeric.integer.decimal.python']
+          expect(tokens[0]).toEqual value: '62_2', scopes: ['source.python', 'constant.numeric.integer.decimal.python']
 
         it "does not tokenize complex floats with a trailing separator", ->
           {tokens} = grammar.tokenizeLine '62_2.83_7e-2_839_j'
