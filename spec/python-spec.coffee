@@ -76,19 +76,19 @@ describe "Python grammar", ->
           expect(tokens[0]).toEqual value: '0b236_777_644', scopes: ['source.python', 'constant.numeric.integer.octal.python']
 
         it "does not tokenize octal numbers with more than one consecutive separator", ->
-          {tokens} = grammar.tokenizeLine '0b236__777_644'
+          {tokens} = grammar.tokenizeLine '0o236__777_644'
 
-          expect(tokens[0]).toEqual value: '0b236__777_644', scopes: ['source.python']
+          expect(tokens[0]).toEqual value: '0o236__777_644', scopes: ['source.python']
 
         it "does not tokenize octal numbers with a leading separator", ->
-          {tokens} = grammar.tokenizeLine '0b_236_777_644'
+          {tokens} = grammar.tokenizeLine '0o_236_777_644'
 
-          expect(tokens[0]).toEqual value: '0b_236_777_644', scopes: ['source.python']
+          expect(tokens[0]).toEqual value: '0o_236_777_644', scopes: ['source.python']
 
         it "does not tokenize octal numbers with a trailing separator", ->
-          {tokens} = grammar.tokenizeLine '0b236_777_644_'
+          {tokens} = grammar.tokenizeLine '0o236_777_644_'
 
-          expect(tokens[0]).toEqual value: '0b236_777_644_', scopes: ['source.python']
+          expect(tokens[0]).toEqual value: '0o236_777_644_', scopes: ['source.python']
 
         it "does not tokenize non-octal numbers", ->
           {tokens} = grammar.tokenizeLine '0o8'
@@ -102,24 +102,24 @@ describe "Python grammar", ->
           expect(tokens[0]).toEqual value: '0xe3', scopes: ['source.python', 'constant.numeric.integer.hexadecimal.python']
 
         it "tokenizes hexadecimal numbers with separators", ->
-          {tokens} = grammar.tokenizeLine '0bdead_beef_1337'
+          {tokens} = grammar.tokenizeLine '0xdead_beef_1337'
 
-          expect(tokens[0]).toEqual value: '0bdead_beef_1337', scopes: ['source.python', 'constant.numeric.integer.hexadecimal.python']
+          expect(tokens[0]).toEqual value: '0xdead_beef_1337', scopes: ['source.python', 'constant.numeric.integer.hexadecimal.python']
 
         it "does not tokenize hexadecimal numbers with more than one consecutive separator", ->
-          {tokens} = grammar.tokenizeLine '0bdead__beef_1337'
+          {tokens} = grammar.tokenizeLine '0xdead__beef_1337'
 
-          expect(tokens[0]).toEqual value: '0bdead__beef_1337', scopes: ['source.python']
+          expect(tokens[0]).toEqual value: '0xdead__beef_1337', scopes: ['source.python']
 
         it "does not tokenize hexadecimal numbers with a leading separator", ->
-          {tokens} = grammar.tokenizeLine '0b_dead_beef_1337'
+          {tokens} = grammar.tokenizeLine '0x_dead_beef_1337'
 
-          expect(tokens[0]).toEqual value: '0b_dead_beef_1337', scopes: ['source.python']
+          expect(tokens[0]).toEqual value: '0x_dead_beef_1337', scopes: ['source.python']
 
         it "does not tokenize hexadecimal numbers with a trailing separator", ->
-          {tokens} = grammar.tokenizeLine '0bdead_beef_1337_'
+          {tokens} = grammar.tokenizeLine '0xdead_beef_1337_'
 
-          expect(tokens[0]).toEqual value: '0bdead_beef_1337_', scopes: ['source.python']
+          expect(tokens[0]).toEqual value: '0xdead_beef_1337_', scopes: ['source.python']
 
         it "does not tokenize non-hexadecimal numbers", ->
           {tokens} = grammar.tokenizeLine '0xf'
@@ -130,7 +130,7 @@ describe "Python grammar", ->
         it "tokenizes decimal numbers", ->
           {tokens} = grammar.tokenizeLine '92'
 
-          expect(tokens[0]).toEqual value: '92', scopes: ['source.python', 'constant.numeric.integer.octal.python']
+          expect(tokens[0]).toEqual value: '92', scopes: ['source.python', 'constant.numeric.integer.decimal.python']
 
         it "tokenizes decimal numbers with separators", ->
           {tokens} = grammar.tokenizeLine '123_456_789'
