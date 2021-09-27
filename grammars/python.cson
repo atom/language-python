@@ -42,7 +42,7 @@
     'name': 'constant.numeric.integer.long.hexadecimal.python'
   }
   {
-    'match': '\\b(?i:(0x\\h(?:_?\\h)*)))'
+    'match': '\\b(?i:(0x\\h(?:_?\\h)*))'
     'name': 'constant.numeric.integer.hexadecimal.python'
   }
   {
@@ -50,15 +50,15 @@
     'name': 'constant.numeric.integer.long.octal.python'
   }
   {
-    'match': '\\b(?i:(0o?[0-7](?:_?[0-7])*)))'
+    'match': '\\b(?i:(0o?[0-7](?:_?[0-7])*))'
     'name': 'constant.numeric.integer.octal.python'
   }
   {
-    'match': '\\b(?i:(0b[01](?:_?[01])*))L)'
+    'match': '\\b(?i:(0b[01](?:_?[01])*)L)'
     'name': 'constant.numeric.integer.long.binary.python'
   }
   {
-    'match': '\\b(?i:(0b[01](?:_?[01])*)))'
+    'match': '\\b(?i:(0b[01](?:_?[01])*))'
     'name': 'constant.numeric.integer.binary.python'
   }
   {
