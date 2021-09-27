@@ -38,51 +38,51 @@
     'include': '#language_variables'
   }
   {
-    'match': '\\b(?i:(0x\\h*)L)'
+    'match': '\\b(?i:(0x\\h(?:_?\\h)*)L)'
     'name': 'constant.numeric.integer.long.hexadecimal.python'
   }
   {
-    'match': '\\b(?i:(0x\\h*))'
+    'match': '\\b(?i:(0x\\h(?:_?\\h)*)))'
     'name': 'constant.numeric.integer.hexadecimal.python'
   }
   {
-    'match': '\\b(?i:(0o?[0-7]+)L)'
+    'match': '\\b(?i:(0o?[0-7]((?:_?[0-7])*)))L)'
     'name': 'constant.numeric.integer.long.octal.python'
   }
   {
-    'match': '\\b(?i:(0o?[0-7]+))'
+    'match': '\\b(?i:(0o?[0-7](?:_?[0-7])*)))'
     'name': 'constant.numeric.integer.octal.python'
   }
   {
-    'match': '\\b(?i:(0b[01]+)L)',
+    'match': '\\b(?i:(0b[01](?:_?[01])*))L)'
     'name': 'constant.numeric.integer.long.binary.python'
   }
   {
-    'match': '\\b(?i:(0b[01]+))',
+    'match': '\\b(?i:(0b[01](?:_?[01])*)))'
     'name': 'constant.numeric.integer.binary.python'
   }
   {
-    'match': '\\b(?i:(((\\d+(\\.(?=[^a-zA-Z_])\\d*)?|(?<=[^0-9a-zA-Z_])\\.\\d+)(e[\\-\\+]?\\d+)?))J)'
+    'match': '\\b(?i:(((\\d(?:_?\\d)*(\\.(?=[^a-zA-Z_])(\\d(?:_?\\d)*)?)?|(?<=[^0-9a-zA-Z_])\\.\\d(?:_?\\d)*)(e[\\-\\+]?\\d(?:_?\\d)*)?))J)'
     'name': 'constant.numeric.complex.python'
   }
   {
-    'match': '\\b(?i:(\\d+\\.\\d*(e[\\-\\+]?\\d+)?))(?=[^a-zA-Z_])'
+    'match': '\\b(?i:(\\d(?:_?\\d)*\\.(\\d(?:_?\\d)*)?(e[\\-\\+]?\\d(?:_?\\d)*)?))(?=[^a-zA-Z_])'
     'name': 'constant.numeric.float.python'
   }
   {
-    'match': '(?<=[^0-9a-zA-Z_])(?i:(\\.\\d+(e[\\-\\+]?\\d+)?))'
+    'match': '(?<=[^0-9a-zA-Z_])(?i:(\\.\\d(?:_?\\d)*(e[\\-\\+]?\\d(?:_?\\d)*)?))'
     'name': 'constant.numeric.float.python'
   }
   {
-    'match': '\\b(?i:(\\d+e[\\-\\+]?\\d+))'
+    'match': '\\b(?i:(\\d(?:_?\\d)*e[\\-\\+]?\\d(?:_?\\d)*))'
     'name': 'constant.numeric.float.python'
   }
   {
-    'match': '\\b(?i:([1-9]+[0-9]*|0)L)'
+    'match': '\\b(?i:([1-9](?:_?\\d)*|0)L)'
     'name': 'constant.numeric.integer.long.decimal.python'
   }
   {
-    'match': '\\b([1-9]+[0-9]*|0)'
+    'match': '\\b(?:[1-9](?:_?\\d)*|0)'
     'name': 'constant.numeric.integer.decimal.python'
   }
   {
