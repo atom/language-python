@@ -46,7 +46,7 @@
     'name': 'constant.numeric.integer.hexadecimal.python'
   }
   {
-    'match': '\\b(?i:(0o?[0-7]((?:_?[0-7])*)))L)'
+    'match': '\\b(?i:(0o?[0-7](?:_?[0-7])*)L)'
     'name': 'constant.numeric.integer.long.octal.python'
   }
   {
