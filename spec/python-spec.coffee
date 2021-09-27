@@ -187,7 +187,7 @@ describe "Python grammar", ->
         it "does not tokenize decimal floats with a leading separator", ->
           {tokens} = grammar.tokenizeLine '373_827._639_817'
 
-          expect(tokens[0]).toEqual value: '373_827', scopes: ['source.python']
+          expect(tokens[0]).toEqual value: '373_827', scopes: ['source.python', 'constant.numeric.integer.decimal.python']
 
         it "does not tokenize decimal floats with a trailing separator", ->
           {tokens} = grammar.tokenizeLine '373_827_.639_817'
@@ -208,12 +208,12 @@ describe "Python grammar", ->
         it "tokenizes exponential decimal floats", ->
           {tokens} = grammar.tokenizeLine '97.22e-43'
 
-          expect(tokens[0]).toEqual value: '97.22e+43', scopes: ['source.python', 'constant.numeric.float.python']
+          expect(tokens[0]).toEqual value: '97.22e-43', scopes: ['source.python', 'constant.numeric.float.python']
 
         it "tokenizes exponential floats with separators", ->
           {tokens} = grammar.tokenizeLine '62_2e-2_839'
 
-          expect(tokens[0]).toEqual value: '62_2e', scopes: ['source.python', 'constant.numeric.float.python']
+          expect(tokens[0]).toEqual value: '62_2e-2_839', scopes: ['source.python', 'constant.numeric.float.python']
 
         it "does not tokenize exponential floats with more than one consecutive separator", ->
           {tokens} = grammar.tokenizeLine '62_2e-2__839'
@@ -264,12 +264,12 @@ describe "Python grammar", ->
         it "does not tokenize complex floats with more than one consecutive separator", ->
           {tokens} = grammar.tokenizeLine '62_2.83_7e-2__839j'
 
-          expect(tokens[0]).toEqual value: '62_2.8', scopes: ['source.python']
+          expect(tokens[0]).toEqual value: '62_2.8', scopes: ['source.python', 'constant.numeric.float.python']
 
         it "does not tokenize complex floats with a leading separator", ->
           {tokens} = grammar.tokenizeLine '62_2._83_7e-2_839j'
 
-          expect(tokens[0]).toEqual value: '_62_2', scopes: ['source.python']
+          expect(tokens[0]).toEqual value: '_62_2', scopes: ['source.python', 'constant.numeric.integer.decimal.python']
 
         it "does not tokenize complex floats with a trailing separator", ->
           {tokens} = grammar.tokenizeLine '62_2.83_7e-2_839_j'
