@@ -1,4 +1,19 @@
 '.source.python':
+  'print':
+		'prefix': 'print'
+		'body': 'print("${1:hello}")$2'
+	'return':
+		'prefix': 'return'
+		'body': 'return '
+  'False':
+		'prefix': 'false'
+		'body': 'False'
+	'True':
+		'prefix': 'true'
+		'body': 'True'
+	'range()':
+		'prefix': 'range'
+		'body': 'range(${1:10})'
   '#!/usr/bin/env python':
     'prefix': 'env'
     'body': '#!/usr/bin/env python\n'
