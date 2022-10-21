@@ -65,131 +65,362 @@ comments:
 scopes:
   'module': 'source.python'
 
-  'comment': 'comment.line'
-  'string': 'string.quoted'
-  'escape_sequence': 'constant.character.escape'
-  'interpolation': 'meta.embedded'
-  'interpolation > "{"': 'punctuation.section.embedded'
-  'interpolation > "}"': 'punctuation.section.embedded'
+  # Keyword
+  '"if"': 'keyword.control.condition'
+  '"else"': 'keyword.control.condition'
+  '"elif"': 'keyword.control.condition'
+  '"while"': 'keyword.control.loop'
+  '"for"': 'keyword.control.loop'
+  '"return"': 'keyword.control.jump'
+  '"break"': 'keyword.control.jump'
+  '"continue"': 'keyword.control.jump'
+  '"pass"': 'keyword.control.jump'
+  '"yield"': 'keyword.control.jump'
+  '"raise"': 'keyword.control.jump'
+  '"await"': 'keyword.control.jump'
+  '"try"': 'keyword.control.exception'
+  '"except"': 'keyword.control.exception'
+  '"finally"': 'keyword.control.exception'
+  '"import"': 'keyword.control.package'
+  '"from"': 'keyword.control.package'
+  '"with"': 'keyword.control.evaluate'
+  '"as"': 'keyword.control.evaluate'
+  '"assert"': 'keyword.control.evaluate'
 
-  'class_definition > identifier': 'entity.name.type.class'
-  'function_definition > identifier': 'entity.name.function.definition'
-  'call > identifier:nth-child(0)': [
-    {match: '^(abs|all|any|ascii|bin|bool|breakpoint|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dict|dir|divmod|enumerate|eval|exec|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|isinstance|issubclass|iter|len|list|locals|map|max|memoryview|min|next|object|oct|open|ord|pow|print|property|range|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|vars|zip|__import__)$',
-    scopes: 'support.function.call'},
-    {match: '^[A-Z]', scopes: 'support.type.contructor'}
-    'entity.name.function.call'
-   ]
-  'call > attribute > identifier:nth-child(2)': 'entity.name.function'
+  '"print"': 'keyword.control.print'
+  '"exec"': 'keyword.control.exec'
 
-  'identifier': [
-    {match:
-      '^(BaseException|Exception|TypeError|StopAsyncIteration|StopIteration|ImportError|ModuleNotFoundError|OSError|ConnectionError|BrokenPipeError|ConnectionAbortedError|ConnectionRefusedError|ConnectionResetError|BlockingIOError|ChildProcessError|FileExistsError|FileNotFoundError|IsADirectoryError|NotADirectoryError|InterruptedError|PermissionError|ProcessLookupError|TimeoutError|EOFError|RuntimeError|RecursionError|NotImplementedError|NameError|UnboundLocalError|AttributeError|SyntaxError|IndentationError|TabError|LookupError|IndexError|KeyError|ValueError|UnicodeError|UnicodeEncodeError|UnicodeDecodeError|UnicodeTranslateError|AssertionError|ArithmeticError|FloatingPointError|OverflowError|ZeroDivisionError|SystemError|ReferenceError|BufferError|MemoryError|Warning|UserWarning|DeprecationWarning|PendingDeprecationWarning|SyntaxWarning|RuntimeWarning|FutureWarning|ImportWarning|UnicodeWarning|BytesWarning|ResourceWarning|GeneratorExit|SystemExit|KeyboardInterrupt)$'
-    scopes: 'support.type.exception'},
-    {match: '^(self)', scopes: 'entity.name.variable.self'}
+  '"+"': 'keyword.operator.arithmetic.symbolic'
+  '"-"': 'keyword.operator.arithmetic.symbolic'
+  '"*"': 'keyword.operator.arithmetic.symbolic'
+  '"/"': 'keyword.operator.arithmetic.symbolic'
+  '"%"': 'keyword.operator.arithmetic.symbolic'
+  '"**"': 'keyword.operator.arithmetic.symbolic'
+  '"//"': 'keyword.operator.arithmetic.symbolic'
+  '"@"': 'keyword.operator.arithmetic.symbolic'
+
+  '"&"': 'keyword.operator.bitwise.symbolic'
+  '"|"': 'keyword.operator.bitwise.symbolic'
+  '"^"': 'keyword.operator.bitwise.symbolic'
+  '"~"': 'keyword.operator.bitwise.symbolic'
+  '"<<"': 'keyword.operator.bitwise.shift.symbolic'
+  '">>"': 'keyword.operator.bitwise.shift.symbolic'
+
+  '"="': 'keyword.operator.assignment.symbolic'
+  '":="': 'keyword.operator.assignment.symbolic'
+  '"+="': 'keyword.operator.assignment.compound.symbolic'
+  '"-="': 'keyword.operator.assignment.compound.symbolic'
+  '"*="': 'keyword.operator.assignment.compound.symbolic'
+  '"/="': 'keyword.operator.assignment.compound.symbolic'
+  '"%="': 'keyword.operator.assignment.compound.symbolic'
+  '"**="': 'keyword.operator.assignment.compound.symbolic'
+  '"//="': 'keyword.operator.assignment.compound.symbolic'
+  '"@="': 'keyword.operator.assignment.compound.symbolic'
+  '"&="': 'keyword.operator.assignment.compound.symbolic'
+  '"|="': 'keyword.operator.assignment.compound.symbolic'
+  '"^="': 'keyword.operator.assignment.compound.symbolic'
+  '"<<="': 'keyword.operator.assignment.compound.symbolic'
+  '">>="': 'keyword.operator.assignment.compound.symbolic'
+
+  '"=="': 'keyword.operator.comparison.symbolic'
+  '"!="': 'keyword.operator.comparison.symbolic'
+  '"<>"': 'keyword.operator.comparison.symbolic'
+  '"<"': 'keyword.operator.comparison.symbolic'
+  '">"': 'keyword.operator.comparison.symbolic'
+  '"<="': 'keyword.operator.comparison.symbolic'
+  '">="': 'keyword.operator.comparison.symbolic'
+
+  '"in"': 'keyword.operator.comparison'
+  '"is"': 'keyword.operator.comparison'
+  '"and"': 'keyword.operator.logical'
+  '"or"': 'keyword.operator.logical'
+  '"not"': 'keyword.operator.logical'
+  '"del"': 'keyword.operator.delete'
+
+  '"global"': 'keyword.storage.modifier.global'
+  '"nonlocal"': 'keyword.storage.modifier.nonlocal'
+  '"async"': 'keyword.storage.modifier.async'
+
+  '"def"': 'keyword.storage.declaration'
+  '"lambda"': 'keyword.storage.declaration'
+  '"class"': 'keyword.storage.declaration'
+
+  # Entity
+  '''
+  type > identifier,
+  type > subscript > identifier
+  ''': [
+    {
+      match: '^(bool|bytearray|bytes|complex|dict|float|frozenset|int|list|memoryview|object|range|set|str|tuple)$',
+      scopes: 'entity.type.fundamental.support'
+    },
+    'entity.type'
   ]
 
-  'attribute > identifier:nth-child(2)': 'variable.other.object.property'
+  '''
+  identifier,
+  attribute > identifier:nth-child(0),
+  class_definition > argument_list > identifier,
+  class_definition > argument_list > keyword_argument > identifier:nth-child(2)
+  ''': [
+    {
+      exact: 'cls',
+      scopes: 'entity.variable.support.cls'
+    },
+    {
+      exact: 'self',
+      scopes: 'entity.variable.support.self'
+    }
+  ]
 
-  'decorator': 'entity.name.function.decorator'
+  '''
+  parameters > identifier,
+  parameters > list_splat > identifier,
+  parameters > dictionary_splat > identifier,
+  typed_parameter > identifier,
+  lambda_parameters > identifier,
+  default_parameter > identifier:nth-child(0),
+  keyword_argument > identifier:nth-child(0)
+  ''': [
+    {
+      exact: 'cls',
+      scopes: 'entity.variable.support.parameter.cls'
+    },
+    {
+      exact: 'self',
+      scopes: 'entity.variable.support.parameter.self'
+    },
+    'entity.variable.parameter'
+  ]
 
-  'none': 'constant.language'
-  'true': 'constant.language'
-  'false': 'constant.language'
+  'identifier': [
+    {
+      match: '^(BaseException|Exception|TypeError|StopAsyncIteration|StopIteration|ImportError|ModuleNotFoundError|OSError|ConnectionError|BrokenPipeError|ConnectionAbortedError|ConnectionRefusedError|ConnectionResetError|BlockingIOError|ChildProcessError|FileExistsError|FileNotFoundError|IsADirectoryError|NotADirectoryError|InterruptedError|PermissionError|ProcessLookupError|TimeoutError|EOFError|RuntimeError|RecursionError|NotImplementedError|NameError|UnboundLocalError|AttributeError|SyntaxError|IndentationError|TabError|LookupError|IndexError|KeyError|ValueError|UnicodeError|UnicodeEncodeError|UnicodeDecodeError|UnicodeTranslateError|AssertionError|ArithmeticError|FloatingPointError|OverflowError|ZeroDivisionError|SystemError|ReferenceError|BufferError|MemoryError|Warning|UserWarning|DeprecationWarning|PendingDeprecationWarning|SyntaxWarning|RuntimeWarning|FutureWarning|ImportWarning|UnicodeWarning|BytesWarning|ResourceWarning|GeneratorExit|SystemExit|KeyboardInterrupt)$',
+      scopes: 'entity.type.class.exception.support'
+    },
+    {
+      match: '^(bool|bytearray|bytes|complex|dict|float|frozenset|int|list|memoryview|object|range|set|str|tuple)$',
+      scopes: 'entity.type.fundamental.support'
+    },
+    {
+      match: '^[0-9_]*[A-Z][A-Z0-9_]*$',
+      scopes: 'entity.variable.immutable'
+    },
+    {
+      match: '^[0-9_]*[A-Z]',
+      scopes: 'entity.type.class'
+    },
+    'entity.variable'
+  ]
+
+  'function_definition > identifier': 'entity.function.definition'
+
+  'class_definition > identifier': 'entity.type.class.definition'
+
+  '''
+  class_definition > argument_list > identifier,
+  class_definition > argument_list > keyword_argument > identifier:nth-child(2)
+  ''': [
+    {
+      match: '^(BaseException|Exception|TypeError|StopAsyncIteration|StopIteration|ImportError|ModuleNotFoundError|OSError|ConnectionError|BrokenPipeError|ConnectionAbortedError|ConnectionRefusedError|ConnectionResetError|BlockingIOError|ChildProcessError|FileExistsError|FileNotFoundError|IsADirectoryError|NotADirectoryError|InterruptedError|PermissionError|ProcessLookupError|TimeoutError|EOFError|RuntimeError|RecursionError|NotImplementedError|NameError|UnboundLocalError|AttributeError|SyntaxError|IndentationError|TabError|LookupError|IndexError|KeyError|ValueError|UnicodeError|UnicodeEncodeError|UnicodeDecodeError|UnicodeTranslateError|AssertionError|ArithmeticError|FloatingPointError|OverflowError|ZeroDivisionError|SystemError|ReferenceError|BufferError|MemoryError|Warning|UserWarning|DeprecationWarning|PendingDeprecationWarning|SyntaxWarning|RuntimeWarning|FutureWarning|ImportWarning|UnicodeWarning|BytesWarning|ResourceWarning|GeneratorExit|SystemExit|KeyboardInterrupt)$',
+      scopes: 'entity.type.class.exception.inherited.support'
+    },
+    {
+      match: '^(bool|bytearray|bytes|complex|dict|float|frozenset|int|list|memoryview|object|range|set|str|tuple)$',
+      scopes: 'entity.type.fundamental.inherited.support'
+    }
+  ]
+
+  '''
+  class_definition > argument_list > identifier,
+  class_definition > argument_list > attribute > identifier:nth-child(2),
+  class_definition > argument_list > keyword_argument > identifier:nth-child(2),
+  class_definition > argument_list > keyword_argument > attribute > identifier:nth-child(2)
+  ''': 'entity.type.class.inherited'
+
+  'call > identifier:nth-child(0)': [
+    {
+      match: '^(BaseException|Exception|TypeError|StopAsyncIteration|StopIteration|ImportError|ModuleNotFoundError|OSError|ConnectionError|BrokenPipeError|ConnectionAbortedError|ConnectionRefusedError|ConnectionResetError|BlockingIOError|ChildProcessError|FileExistsError|FileNotFoundError|IsADirectoryError|NotADirectoryError|InterruptedError|PermissionError|ProcessLookupError|TimeoutError|EOFError|RuntimeError|RecursionError|NotImplementedError|NameError|UnboundLocalError|AttributeError|SyntaxError|IndentationError|TabError|LookupError|IndexError|KeyError|ValueError|UnicodeError|UnicodeEncodeError|UnicodeDecodeError|UnicodeTranslateError|AssertionError|ArithmeticError|FloatingPointError|OverflowError|ZeroDivisionError|SystemError|ReferenceError|BufferError|MemoryError|Warning|UserWarning|DeprecationWarning|PendingDeprecationWarning|SyntaxWarning|RuntimeWarning|FutureWarning|ImportWarning|UnicodeWarning|BytesWarning|ResourceWarning|GeneratorExit|SystemExit|KeyboardInterrupt)$',
+      scopes: 'entity.type.class.exception.constructor.support.call'
+    },
+    {
+      match: '^(bool|bytearray|bytes|complex|dict|float|frozenset|int|list|memoryview|object|range|set|str|tuple)$',
+      scopes: 'entity.type.fundamental.cast.support.call'
+    },
+    {
+      exact: 'super',
+      scopes: 'entity.function.support.call.super'
+    },
+    {
+      match: '^(abs|all|any|ascii|bin|breakpoint|callable|chr|classmethod|compile|delattr|dir|divmod|enumerate|eval|exec|filter|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|min|next|oct|open|ord|pow|print|property|repr|reversed|round|setattr|slice|sorted|staticmethod|sum|type|vars|zip|__import__)$',
+      scopes: 'entity.function.support.call'
+    },
+    {
+      match: '^[0-9_]*[A-Z]',
+      scopes: 'entity.type.class.constructor.call'
+    },
+    'entity.function.call'
+  ]
+
+  'decorator > dotted_name > identifier': [
+    {
+      match: '^(classmethod|property|staticmethod)$',
+      scopes: 'entity.function.decorator.support'
+    },
+    {
+      match: '^[0-9_]*[A-Z][A-Z0-9_]*$',
+      scopes: 'entity.variable.immutable'
+    },
+    {
+      match: '^[0-9_]*[A-Z]',
+      scopes: 'entity.type.class'
+    },
+    'entity.decorator'
+  ]
+
+  'attribute > identifier:nth-child(0)': [
+    {
+      match: '^[0-9_]*[A-Z][A-Z0-9_]*$',
+      scopes: 'entity.variable.immutable'
+    },
+    {
+      match: '^[0-9_]*[A-Z]',
+      scopes: 'entity.type.class'
+    },
+    'entity.variable'
+  ]
+
+  'attribute > identifier:nth-child(2)': [
+    {
+      match: '^[0-9_]*[A-Z][A-Z0-9_]*$',
+      scopes: 'entity.variable.immutable.member'
+    },
+    {
+      match: '^[0-9_]*[A-Z]',
+      scopes: 'entity.type.class.member'
+    },
+    'entity.variable.member'
+  ]
+
+  'type > attribute > identifier:nth-child(2)': 'entity.type' # _: _.Type
+
+  'call > attribute > identifier:nth-child(2)': [
+    {
+      match: '^[0-9_]*[A-Z]',
+      scopes: 'entity.type.class.constructor.member.call'
+    },
+    'entity.function.method.call'
+  ]
+
+  # String
+  'string': 'string.quoted'
+  'format_specifier': 'string.part.format'
+  'interpolation': 'string.part.interpolation'
+
+  # Constant
+  'escape_sequence': [
+    {
+      match: '^\\\\[uUxftvnrab0-9]',
+      scopes: 'constant.character.escape.code'
+    },
+    'constant.character.escape'
+  ]
+
   'integer': 'constant.numeric'
   'float': 'constant.numeric'
 
-  'type > identifier': 'support.storage.type'
+  'none': 'constant.language.null'
+  'true': 'constant.language.boolean'
+  'false': 'constant.language.boolean'
+  'ellipsis': 'constant.language.ellipsis.symbolic'
 
-  'class_definition > argument_list > attribute': 'entity.other.inherited-class'
-  'class_definition > argument_list > identifier': 'entity.other.inherited-class'
-  'class_definition > argument_list > keyword_argument > attribute': 'entity.other.inherited-class'
-  'class_definition > argument_list > keyword_argument > identifier:nth-child(2)': 'entity.other.inherited-class'
+  # Comment
+  'comment': 'comment.line'
 
-  '"class"': 'storage.type.class'
-  '"def"': 'storage.type.function'
-  '"lambda"': 'storage.type.function'
+  # Punctuation
+  '"."': 'punctuation.accessor.member'
+  '","': 'punctuation.separator'
+  '";"': 'punctuation.terminator'
+  '":"': 'punctuation.delimiter'
+  '"("': 'punctuation.delimiter'
+  '")"': 'punctuation.delimiter'
+  '"{"': 'punctuation.definition'
+  '"}"': 'punctuation.definition'
+  '"["': 'punctuation.definition'
+  '"]"': 'punctuation.definition'
+  '"\\""': 'punctuation.definition.string'
 
-  '"global"': 'storage.modifier.global'
-  '"nonlocal"': 'storage.modifier.nonlocal'
+  'list_splat > "*"': 'punctuation.operation.variadic.unpack'
+  'list_splat_pattern > "*"': 'punctuation.operation.variadic.pack'
+  'dictionary_splat > "**"': 'punctuation.operation.variadic.unpack'
+  'dictionary_splat_pattern > "**"': 'punctuation.operation.variadic.pack'
 
-  'parameters > identifier': 'variable.parameter.function'
-  'parameters > list_splat > identifier': 'variable.parameter.function'
-  'parameters > dictionary_splat > identifier': 'variable.parameter.function'
-  'default_parameter > identifier:nth-child(0)': 'variable.parameter.function'
-  'keyword_argument > identifier:nth-child(0)': 'variable.parameter.function'
-  'lambda_parameters > identifier': 'variable.parameter.function'
-  'typed_parameter > identifier': 'variable.parameter.function'
+  'wildcard_import > "*"': 'punctuation.definition.package.import.wildcard'
+  'import_prefix > "."': 'punctuation.definition.package.import.relative'
 
-  'argument_list': 'meta.method-call.python'
+  'decorator > "@"': 'punctuation.definition.decorator'
 
-  '"if"': 'keyword.control'
-  '"else"': 'keyword.control'
-  '"elif"': 'keyword.control'
-  '"while"': 'keyword.control'
-  '"for"': 'keyword.control'
-  '"return"': 'keyword.control'
-  '"break"': 'keyword.control'
-  '"continue"': 'keyword.control'
-  '"pass"': 'keyword.control'
-  '"raise"': 'keyword.control'
-  '"yield"': 'keyword.control'
-  '"await"': 'keyword.control'
-  '"async"': 'keyword.control'
-  '"try"': 'keyword.control'
-  '"except"': 'keyword.control'
-  '"with"': 'keyword.control'
-  '"as"': 'keyword.control'
-  '"finally"': 'keyword.control'
-  '"import"': 'keyword.control'
-  '"from"': 'keyword.control'
+  '"->"': 'punctuation.delimiter.type.return'
+  'typed_default_parameter > ":"': 'punctuation.delimiter.type'
+  'assignment > ":"': 'punctuation.delimiter.type'
+  'typed_parameter > ":"': 'punctuation.delimiter.type'
 
-  '"print"': 'keyword.other'
-  '"assert"': 'keyword.other'
-  '"exec"': 'keyword.other'
-  '"del"': 'keyword.other'
+  'slice > ":"': 'punctuation.delimiter.slice'
+  'pair > ":"': 'punctuation.association.pair'
 
-  '"+"': 'keyword.operator'
-  '"-"': 'keyword.operator'
-  '"*"': 'keyword.operator'
-  '"/"': 'keyword.operator'
-  '"%"': 'keyword.operator'
-  '"**"': 'keyword.operator'
-  '"//"': 'keyword.operator'
-  '"=="': 'keyword.operator'
-  '"!="': 'keyword.operator'
-  '"<>"': 'keyword.operator'
-  '">"': 'keyword.operator'
-  '"<"': 'keyword.operator'
-  '">="': 'keyword.operator'
-  '"<="': 'keyword.operator'
-  '"="': 'keyword.operator'
-  '"+="': 'keyword.operator'
-  '"-="': 'keyword.operator'
-  '"*="': 'keyword.operator'
-  '"/="': 'keyword.operator'
-  '"%="': 'keyword.operator'
-  '"**="': 'keyword.operator'
-  '"//="': 'keyword.operator'
-  '"&"': 'keyword.operator'
-  '"|"': 'keyword.operator'
-  '"^"': 'keyword.operator'
-  '"~"': 'keyword.operator'
-  '"<<"': 'keyword.operator'
-  '">>"': 'keyword.operator'
-  'binary_operator > "@"': 'keyword.operator'
-  'binary_operator > "@="': 'keyword.operator'
-  '"in"': 'keyword.operator.logical.python'
-  '"and"': 'keyword.operator.logical.python'
-  '"or"': 'keyword.operator.logical.python'
-  '"not"': 'keyword.operator.logical.python'
-  '"is"': 'keyword.operator.logical.python'
-  '"->"': 'keyword.control.return'
+  'format_specifier  > ":"': 'punctuation.delimiter.string.part.format'
+  'format_expression > "{"': 'punctuation.delimiter.string.part.format'
+  'format_expression > "}"': 'punctuation.delimiter.string.part.format'
 
-  '"["': 'punctuation.definition.begin.bracket.square'
-  '"]"': 'punctuation.definition.end.bracket.square'
-  '","': 'punctuation.separator.delimiter'
-  '"{"': 'punctuation.section.block.begin.bracket.curly'
-  '"}"': 'punctuation.section.block.end.bracket.curly'
-  '"("': 'punctuation.section.parens.begin.bracket.round'
-  '")"': 'punctuation.section.parens.end.bracket.round'
+  'interpolation > "{"': 'punctuation.delimiter.string.part.interpolation'
+  'interpolation > "}"': 'punctuation.delimiter.string.part.interpolation'
+
+  'dictionary > "{"': 'punctuation.definition.collection.dictionary'
+  'dictionary > "}"': 'punctuation.definition.collection.dictionary'
+  'dictionary_comprehension > "{"': 'punctuation.definition.collection.dictionary'
+  'dictionary_comprehension > "}"': 'punctuation.definition.collection.dictionary'
+
+  'set > "{"': 'punctuation.definition.collection.set'
+  'set > "}"': 'punctuation.definition.collection.set'
+  'set_comprehension > "{"': 'punctuation.definition.collection.set'
+  'set_comprehension > "}"': 'punctuation.definition.collection.set'
+
+  'list > "["': 'punctuation.definition.collection.list'
+  'list > "]"': 'punctuation.definition.collection.list'
+  'list_comprehension > "["': 'punctuation.definition.collection.list'
+  'list_comprehension > "]"': 'punctuation.definition.collection.list'
+
+  'subscript > "["': 'punctuation.delimiter.subscript'
+  'subscript > "]"': 'punctuation.delimiter.subscript'
+
+  'tuple > "("': 'punctuation.definition.collection.tuple'
+  'tuple > ")"': 'punctuation.definition.collection.tuple'
+
+  'future_import_statement > "("': 'punctuation.delimiter.package'
+  'future_import_statement > ")"': 'punctuation.delimiter.package'
+  'import_from_statement > "("': 'punctuation.delimiter.package'
+  'import_from_statement > ")"': 'punctuation.delimiter.package'
+
+  'parameters > "("': 'punctuation.delimiter.parameters'
+  'parameters > ")"': 'punctuation.delimiter.parameters'
+
+  'argument_list > "("': 'punctuation.delimiter.arguments'
+  'argument_list > ")"': 'punctuation.delimiter.arguments'
+
+  'parenthesized_expression > "("': 'punctuation.delimiter.expression'
+  'parenthesized_expression > ")"': 'punctuation.delimiter.expression'
+  'generator_expression > "("': 'punctuation.delimiter.expression'
+  'generator_expression > ")"': 'punctuation.delimiter.expression'
+
+  'ERROR > "."': 'punctuation.accessor.member.invalid.illegal'
+  'ERROR > ","': 'punctuation.separator.invalid.illegal'
+  'ERROR > ";"': 'punctuation.terminator.invalid.illegal'
+  'ERROR > "->"': 'punctuation.delimiter.type.return.invalid.illegal'
+  'ERROR > ":"': 'punctuation.delimiter.invalid.illegal'
+  'ERROR > "("': 'punctuation.delimiter.invalid.illegal'
+  'ERROR > ")"': 'punctuation.delimiter.invalid.illegal'
+  'ERROR > "{"': 'punctuation.definition.invalid.illegal'
+  'ERROR > "}"': 'punctuation.definition.invalid.illegal'
+  'ERROR > "["': 'punctuation.definition.invalid.illegal'
+  'ERROR > "]"': 'punctuation.definition.invalid.illegal'
+  'ERROR > "\\""': 'punctuation.definition.string.invalid.illegal'
